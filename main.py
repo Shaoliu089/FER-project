@@ -80,7 +80,7 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--train', type=bool, help='True when training')
     parser.add_argument('-w', '--cweights', type=bool, help='True when class weighted')
     parser.add_argument('-wr', '--writerpath', type=str, help='tensorboard wriiter')
-    parser.add_argument('-m', '--mymodel', type=bool, help='tensorboard wriiter')
+    parser.add_argument('-m', '--mymodel', type=bool, help='my model')
     args = parser.parse_args()
 
     if args.setup :
