@@ -19,7 +19,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-def Train(epochs,train_loader,val_loader,criterion,optmizer,device, writer):
+def Train(epochs,train_loader,val_loader,criterion,optmizer,device, writer, modelname):
     '''
     Training Loop
     '''
@@ -63,7 +63,7 @@ def Train(epochs,train_loader,val_loader,criterion,optmizer,device, writer):
         writer.add_scalar("Loss/val", validation_loss, e)
         writer.add_scalar("Accuracy/val", val_acc, e)
      
-    torch.save(net.state_dict(),'New_model-{}-{}-{}.pt'.format(epochs,batchsize,lr))
+    torch.save(net.state_dict(), modelname + '-{}-{}-{}.pt'.format(epochs,batchsize,lr))
     print("===================================Training Finished===================================")
 
 
@@ -102,8 +102,10 @@ if __name__ == '__main__':
     if args.train:
         if args.mymodel:
             net = New_Model()
+            modelname = 'new_model'
         else:
             net = Deep_Emotion()
+            modelname = 'deep_emotion'
         net.to(device)
         print("Model archticture: ", net)
         traincsv_file = args.data+'/'+'train.csv'
@@ -124,4 +126,4 @@ if __name__ == '__main__':
         else:
           criterion= nn.CrossEntropyLoss()
         optmizer= optim.Adam(net.parameters(),lr= lr, weight_decay=1e-4)
-        Train(epochs, train_loader, val_loader, criterion, optmizer, device, writer)
+        Train(epochs, train_loader, val_loader, criterion, optmizer, device, writer, modelname)
