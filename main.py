@@ -12,7 +12,7 @@ from torch.utils.data.sampler import SubsetRandomSampler
 from torchvision import transforms
 
 from data_loaders import Plain_Dataset, eval_data_dataloader
-from New_model2 import New_Model
+from New_model import New_Model
 from generate_data import Generate_data
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
