@@ -38,20 +38,20 @@ class New_Model(nn.Module):
         self.fc_loc[2].weight.data.zero_()
         self.fc_loc[2].bias.data.copy_(torch.tensor([1, 0, 0, 0, 1, 0], dtype=torch.float))
 
-    def stn(self, x):
+    def stn(self, x, y):
         xs = self.localization(x)
         xs = xs.view(-1, 640)
         theta = self.fc_loc(xs)
         theta = theta.view(-1, 2, 3)
 
-        grid = F.affine_grid(theta, x.size())
-        x = F.grid_sample(x, grid)
-        return x
+        grid = F.affine_grid(theta, y.size())
+        y = F.grid_sample(y, grid)
+        return y
 
     def forward(self,input):
-        out = self.stn(input)
 
-        out = F.relu(self.conv1(out))
+
+        out = F.relu(self.conv1(input))
         out = self.conv2(out)
         out = F.relu(self.pool2(out))
 
@@ -60,6 +60,7 @@ class New_Model(nn.Module):
         out = F.relu(self.pool4(out))
 
         out = F.dropout(out)
+        out = self.stn(input, out)
         out = out.view(-1, 640)
         out = F.relu(self.fc1(out))
         out = self.fc2(out)
