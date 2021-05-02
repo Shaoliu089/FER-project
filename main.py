@@ -118,5 +118,5 @@ if __name__ == '__main__':
           criterion= nn.CrossEntropyLoss(weight=class_weights)
         else:
           criterion= nn.CrossEntropyLoss()
-        optmizer= optim.Adam(net.parameters(),lr= lr)
+        optmizer= optim.Adam(net.parameters(),lr= lr, weight_decay=1e-4)
         Train(epochs, train_loader, val_loader, criterion, optmizer, device, writer)
