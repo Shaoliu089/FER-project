@@ -11,7 +11,7 @@ class New_Model(nn.Module):
         self.conv1 = nn.Conv2d(1,10,5)
         self.conv2 = nn.Conv2d(10,20,5)
         self.pool2 = nn.MaxPool2d(2,2)
-
+        self.conv2_1 = nn.Conv2d(20,20,3,padding=(1,1))
         self.conv3 = nn.Conv2d(20,10,3)
         self.conv4 = nn.Conv2d(10,10,3)
         self.pool4 = nn.MaxPool2d(2,2)
@@ -22,16 +22,16 @@ class New_Model(nn.Module):
         self.fc2 = nn.Linear(50,7)
 
         self.localization = nn.Sequential(
-            nn.Conv2d(1, 8, kernel_size=7),
+            nn.Conv2d(1, 8, kernel_size=3),
             nn.MaxPool2d(2, stride=2),
             nn.ReLU(True),
-            nn.Conv2d(8, 10, kernel_size=5),
+            nn.Conv2d(8, 10, kernel_size=3),
             nn.MaxPool2d(2, stride=2),
             nn.ReLU(True)
         )
 
         self.fc_loc = nn.Sequential(
-            nn.Linear(640, 32),
+            nn.Linear(1000, 32),
             nn.ReLU(True),
             nn.Linear(32, 3 * 2)
         )
@@ -40,7 +40,7 @@ class New_Model(nn.Module):
 
     def stn(self, x, y):
         xs = self.localization(x)
-        xs = xs.view(-1, 640)
+        xs = xs.view(-1, 1000)
         theta = self.fc_loc(xs)
         theta = theta.view(-1, 2, 3)
 
@@ -54,6 +54,7 @@ class New_Model(nn.Module):
         out = F.relu(self.conv1(input))
         out = self.conv2(out)
         out = F.relu(self.pool2(out))
+        out = F.relu(self.conv2_1(out))
 
         out = F.relu(self.conv3(out))
         out = self.norm(self.conv4(out))
