@@ -13,6 +13,7 @@ from torchvision import transforms
 
 from data_loaders import Plain_Dataset, eval_data_dataloader
 from New_model import New_Model
+from deep_emotion import Deep_Emotion
 from generate_data import Generate_data
 from torch.utils.tensorboard import SummaryWriter
 
@@ -79,6 +80,7 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--train', type=bool, help='True when training')
     parser.add_argument('-w', '--cweights', type=bool, help='True when class weighted')
     parser.add_argument('-wr', '--writerpath', type=str, help='tensorboard wriiter')
+    parser.add_argument('-m', '--mymodel', type=bool, help='tensorboard wriiter')
     args = parser.parse_args()
 
     if args.setup :
@@ -98,7 +100,10 @@ if __name__ == '__main__':
         batchsize = 128
 
     if args.train:
-        net = New_Model()
+        if args.mymodel:
+            net = New_Model()
+        else:
+            net = Deep_Emotion()
         net.to(device)
         print("Model archticture: ", net)
         traincsv_file = args.data+'/'+'train.csv'
