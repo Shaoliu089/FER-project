@@ -93,4 +93,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Project Link: [https://github.com/Shaoliu89/face-emotion-recognition](https://github.com/Shaoliu89/FER-project.git)
+Project Link: [[https://github.com/Shaoliu89/face-emotion-recognition](https://github.com/Shaoliu89/FER-project.git)
+](https://github.com/Shaoliu089/FER-project/)
