@@ -1,18 +1,18 @@
 # Introduction
-This is a project modifiedfrom the research paper, Deep-Emotion (https://arxiv.org/pdf/1902.01019).
+This project was modified from the research paper, Deep-Emotion (https://arxiv.org/pdf/1902.01019).
 
 # Face Emotion Recognition
 
-A deep learning-based facial emotion recognition system that can detect and classify human emotions in real-time using Python.
+A deep learning-based facial emotion recognition system that can detect and classify human emotions using Python.
 
 ## Overview
 
-This project implements a facial emotion recognition system that can detect and classify human emotions from facial expressions. The system uses deep learning techniques to analyze facial features and predict emotions such as happiness, sadness, anger, surprise, fear, disgust, and neutral states.
+This project implements a facial emotion recognition system to detect and classify human emotions from facial expressions. The system uses deep learning techniques to analyze facial features and predict emotions such as happiness, sadness, anger, surprise, fear, disgust, and neutral states.
 
 ## Features
 
 - Real-time facial detection and emotion recognition
-- Support for 7 different emotion categories:
+- Support for seven different emotion categories:
   - Happy
   - Sad
   - Angry
