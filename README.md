@@ -43,21 +43,16 @@ cd face-emotion-recognition
 ```
 
 2. Install required packages:
-```bash
-pip install -r requirements.txt
-```
+
 
 ## Usage
 
-1. For real-time emotion detection using webcam:
+1. Training
 ```bash
-python real_time_detection.py
+python main.py
 ```
 
-2. For emotion detection on images:
-```bash
-python image_detection.py --image path/to/your/image.jpg
-```
+
 
 ## Project Structure
 
